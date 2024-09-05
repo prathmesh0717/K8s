@@ -1,4 +1,4 @@
-# $${\color{red} \textbf{Basic Commands of k8s}}$$
+# $${\color{violet} \textbf{Basic Commands of k8s}}$$
 
 ## ${\color{cyan} \textbf{pod}}$
 
@@ -38,7 +38,11 @@ kubectl run nginx --image=nginx --restart=Never
 ````
 kubectl delete -f <file.yml>
 ````
-## ${\color{orange} \textbf{Replication Controller}}$
+10. tp terminate the container in pod.
+````
+service stop nginx
+````
+## ${\color{cyan} \textbf{Replication Controller}}$
 
 
 1. Create Replication controller
@@ -54,7 +58,7 @@ kubectl get rc
 kubectl delete rc <rc-name>
 ````
 
-## ${\color{yellow} \textbf{Replica Set}}$
+## ${\color{cyan} \textbf{Replica Set}}$
 
 1. Create Replica set
 ````
@@ -69,7 +73,7 @@ kubectl get rs
 kubectl delete rs <rs-name>
 ````
 
-## ${\color{green} \textbf{Deployment}}$
+## ${\color{cyan} \textbf{Deployment}}$
 
 1. Create Deployment wit command
 ````
@@ -123,7 +127,7 @@ kubectl rollout undo deployment <deployment_name> --to-revision=<number_of_revis
 ````
 kubectl rollout status deployment <deployment_name>
 ````
-## ${\color{blue} \textbf{Namespace}}$
+## ${\color{cyan} \textbf{Namespace}}$
 
 1. Create a namespace.
 ````
@@ -161,11 +165,12 @@ kubectl config view --minify | grep namespace:
 ````
 kubectl exec -it <pod_name> -n <ns_name> -- <command which we want to run>
 ````
-## ${\color{red} \textbf{Service}}$
+## ${\color{cyan} \textbf{Service}}$
 
 1. Create Service.
 ````
-kubectl expose deployment my-deployment --type=ClusterIP --name=my-service --port=80 --target-port=9376
+kubectl expose deployment <deployment-name> --type=ClusterIP --port=<port> --target-port=<target-port> --name=<service-name>
+
 ````
 2. Communicate between services from pod.
 ````
@@ -174,4 +179,147 @@ curl <opposite_service_ip>:<port_of_pod>
 3. List of service.
 ````
 kubectl get svc
+````
+4. Describe service.
+````
+kubectl describe service <service-name>
+````
+5. Delete Service.
+````
+kubectl delete service <service-name>
+````
+6. Edit Service.
+````
+kubectl edit service <service-name>
+````
+7. Get Service Details in a Specific Namespace.
+````
+kubectl get services -n <namespace>
+````
+8. Get endpoints of a service.
+````
+kubectl get endpoints <service-name>
+````
+## ${\color{cyan} \textbf{Daemonset}}$
+
+1. List Daemonset.
+````
+kubectl get daemonsets
+````
+2. Describe Daemonset.
+````
+kubectl describe daemonset <daemonset-name>
+````
+3. Delete Daemonset.
+````
+kubectl delete daemonset <daemonset-name>
+````
+4. Edit a Daemonset
+````
+kubectl edit daemonset <daemonset-name>
+````
+5. Get Daemonset Pods.
+````
+kubectl get pods -l name=<daemonset-name>
+````
+6. Scale a DaemonSet
+````
+kubectl scale daemonset <daemonset-name> --replicas=<number-of-replicas>
+````
+## ${\color{cyan} \textbf{Statefulset}}$
+
+1. List of sts.
+````
+kubectl get statefulsets
+````
+2. Describe statefulset
+````
+kubectl describe statefulset <statefulset-name>
+````
+3. Delete Statefulset
+````
+kubectl delete statefulset <statefulset-name>
+````
+## ${\color{cyan} \textbf{ConfigMap}}$
+
+1. Create Configmap from file.
+````
+kubectl create configmap <configmap-name> --from-file=<path-to-file>
+````
+2. Create a ConfigMap with Multiple file.
+````
+kubectl create configmap <configmap-name> --from-file=<path-to-file1> --from-file=<path-to-file2>
+````
+3. Create a ConfigMap from literal values.
+````
+kubectl create configmap <configmap-name> --from-literal=<key1>=<value1> --from-literal=<key2>=<value2>
+````
+4. Create a configmap from Directory.
+````
+kubectl create configmap <configmap-name> --from-file=<directory-path>
+````
+5. List of Configmap.
+````
+kubectl get configmaps
+````
+6. Describe a ConfigMap.
+````
+kubectl describe configmap <configmap-name>
+````
+7. Delete a Configmap.
+````
+kubectl delete configmap <configmap-name>
+````
+8. View the data in ConfigMap.
+````
+kubectl get configmap <configmap-name> -o yaml
+````
+9. List all keys in Configmap.
+````
+kubectl get configmap <configmap-name> -o jsonpath='{.data}' | jq -r 'keys[]'
+````
+## ${\color{cyan} \textbf{Secret}}$
+
+1. Create a Secret from Literal Values
+````
+kubectl create secret generic <secret-name> --from-literal=<key1>=<value1> --from-literal=<key2>=<value2>
+````
+2. Create a Secret from a File
+````
+kubectl create secret generic <secret-name> --from-file=<key>=<path-to-file>
+````
+3. Create a Secret from Multiple Files
+````
+kubectl create secret generic <secret-name> --from-file=<path-to-file1> --from-file=<path-to-file2>
+````
+4. Create a Secret for Docker Registry
+````
+kubectl create secret docker-registry <secret-name> \
+  --docker-username=<username> \
+  --docker-password=<password> \
+  --docker-email=<email>
+````
+5. Create a TLS Secret
+````
+kubectl create secret tls <secret-name> --cert=<path-to-cert-file> --key=<path-to-key-file>
+````
+6. List all Secret
+````
+kubectl get secrets
+````
+7. Describe Secret
+````
+kubectl describe secret <secret-name>
+````
+8. Delete Secret.
+````
+kubectl delete secret <secret-name>
+````
+9. View a Secret in YAML Format
+````
+kubectl get secret <secret-name> -o yaml
+````
+10. View the Data in a Secret
+````
+kubectl get secret <secret-name> -o jsonpath='{.data}'
 ````
