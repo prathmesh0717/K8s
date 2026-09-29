@@ -78,7 +78,7 @@ spec:
 ````
 
 
-## ${\color{brown} \textbf{NodePort}}$
+## ${\color{brown} \textbf{NodePort Ip Range 30000 To 32767}}$
 
 ````
 apiVersion: apps/v1
