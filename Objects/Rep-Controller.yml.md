@@ -28,4 +28,4 @@ ${\color{red} \textbf{Labels :}}$  Key-value pairs assigned to Kubernetes object
 
 ${\color{red} \textbf{Replicas :}}$  The desired number of identical pod instances to run.
 
-${\color{red} \textbf{Selector :}}$  Criteria used to identify and manage groups of labeled objects.
+${\color{red} \textbf{Selector :}}$ Criteria used to identify and manage groups of labeled objects.
