@@ -1,0 +1,35 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pod IP</title>
+</head>
+
+<body>
+    <h1>Welcome to Nginx</h1>
+    <h2 id="pod-ip"></h2>
+
+    <script>
+        const podIPs = [
+            "192.168.0.135",
+            "192.168.1.248",
+            "192.168.1.93",
+            "192.168.0.249"
+        ];
+
+        let index = localStorage.getItem("podIndex");
+
+        if (index === null) {
+            index = 0;
+        } else {
+            index = (parseInt(index) + 1) % podIPs.length;
+        }
+
+        localStorage.setItem("podIndex", index);
+
+        document.getElementById("pod-ip").innerHTML =
+            "Pod IP: " + podIPs[index];
+    </script>
+</body>
+</html>
+```
