@@ -35,3 +35,30 @@ metadata:
 data:
  url: "https://templatemo.com/download/templatemo_632_machina"
 ````
+
+````
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_NAME: "MyApplication"
+  APP_ENV: "development"
+  APP_PORT: "8080"
+  DB_HOST: "mysql-service"
+  DB_PORT: "3306"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: app-container
+      image: nginx
+      envFrom:
+        - configMapRef:
+            name: app-config
+---
+
