@@ -112,7 +112,35 @@ kubectl scale deployment my-app --replicas=5                     # Scale deploym
 * Canary → gradual release
 
 ---
+##  Example Deployment (Rolling Update)
 
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: my-app
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-pod-game
+        image: mukunddeo9325/super-mario
+        ports:
+        - containerPort: 80
+```
 
 ````
 apiVersion: apps/v1
