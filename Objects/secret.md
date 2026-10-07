@@ -31,3 +31,50 @@ spec:
           key: password
   restartPolicy: Never
 ````
+
+````
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: my-app
+
+  template:
+    metadata:
+      labels:
+        app: my-app
+
+    spec:
+      containers:
+        - name: app-container
+          image: nginx:latest
+
+          ports:
+            - containerPort: 80
+
+          volumeMounts:
+            # ConfigMap volume
+            - name: config-volume
+              mountPath: /etc/app/config
+
+            # Secret volume
+            - name: secret-volume
+              mountPath: /etc/app/secret
+
+      volumes:
+        # Attach ConfigMap
+        - name: config-volume
+          configMap:
+            name: app-config
+
+        # Attach Secret
+        - name: secret-volume
+          secret:
+            secretName: app-secret
+````
