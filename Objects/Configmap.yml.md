@@ -60,5 +60,12 @@ spec:
       envFrom:
         - configMapRef:
             name: app-config
----
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/myapp
 
+  volumes:
+    - name: config-volume
+      configMap:
+        name: app-config
+````
