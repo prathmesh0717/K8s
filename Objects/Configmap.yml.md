@@ -26,3 +26,12 @@ spec:
       name: my-config
   restartPolicy: Never
 ````
+
+````
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+    name: links-cm
+data:
+ url: "https://templatemo.com/download/templatemo_632_machina"
+````
