@@ -1,0 +1,1 @@
+Pod Affinity is used to schedule Pods close to other selected Pods, while Pod Anti-Affinity is used to keep Pods away from selected Pods. Affinity is useful for applications that need to communicate closely, and Anti-Affinity is useful for high availability and distributing replicas across nodes.
