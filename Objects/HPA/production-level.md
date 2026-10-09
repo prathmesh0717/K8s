@@ -184,8 +184,11 @@ spec:
           periodSeconds: 60
 ```
 ## HPA pdb.yml Pod Disruption Budget
+
 # This helps maintain at least one available pod during supported voluntary disruptions, such as node maintenance.
+
 # A PodDisruptionBudget does not protect against every outage, such as a node crashing unexpectedly.
+
 ````yaml
 
 apiVersion: policy/v1
