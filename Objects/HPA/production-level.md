@@ -119,7 +119,7 @@ spec:
           emptyDir: {}
 ````
 ## HPA with LoadBalancer Service
-````yaml
+```yaml
 
 apiVersion: v1
 kind: Service
@@ -139,7 +139,7 @@ spec:
       targetPort: http
 ````
 ## HPA File
-````yaml
+```yaml
 
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -182,15 +182,15 @@ spec:
         - type: Pods
           value: 1
           periodSeconds: 60
-```
+````
+
 ## HPA pdb.yml Pod Disruption Budget
 
 ## This helps maintain at least one available pod during supported voluntary disruptions, such as node maintenance.
 
 ## A PodDisruptionBudget does not protect against every outage, such as a node crashing unexpectedly.
 
-````yaml
-
+```yaml
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
