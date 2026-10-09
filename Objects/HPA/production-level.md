@@ -1,0 +1,10 @@
+## Namespace
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    app.kubernetes.io/part-of: nginx-production
+```
